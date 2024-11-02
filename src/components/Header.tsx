@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useMemo, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useAppStore } from '../stores/useAppStore'
 
@@ -12,6 +12,7 @@ export default function Header() {
 
   const fetchCategories =  useAppStore((state) => state.fetchCategories)
   const categories =  useAppStore((state) => state.categories)
+  const searchRecipes =  useAppStore((state) => state.searchRecipes)
 
 
   useEffect(() => {
@@ -25,6 +26,17 @@ export default function Header() {
     })
   }
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    // TODO Validar
+    if(Object.values(searchFilters).includes('')) {
+      console.log('Todos los campos son obligatorios')
+      return
+    }
+    // Consultar las recetas
+    searchRecipes(searchFilters)
+  }
 
   return (
     <header className={isHome ? 'bg-header bg-center bg-cover' : 'bg-slate-800'}>
@@ -50,6 +62,7 @@ export default function Header() {
             { isHome && (
               <form 
                 className='md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6'              
+                onSubmit={handleSubmit}
               >
                 <div className='space-y-4'>
                   <label 
@@ -77,7 +90,7 @@ export default function Header() {
                     name='category'
                     className='p-3 w-full rounded-lg focus:outline-none'
                     onChange={handleChange}
-                    value={searchFilters.ingredient}
+                    value={searchFilters.category}
                   >
                     <option value="">-- Seleccione --</option>
                     {categories.drinks.map(category => (
