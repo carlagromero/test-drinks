@@ -8,8 +8,6 @@ export type RecipesSliceType = {
     drinks: Drinks
     fetchCategories: () => Promise<void>
     searchRecipes: (searchFilters: SearchFilter) => Promise<void>
-
-
 }
 
 export const createRecipesSlace : StateCreator<RecipesSliceType>  = (set) => ({
