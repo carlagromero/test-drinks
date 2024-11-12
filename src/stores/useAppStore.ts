@@ -1,7 +1,10 @@
 import { create } from 'zustand'
 import {devtools } from 'zustand/middleware'
-import { createRecipesSlace, RecipesSliceType } from './recipeSlice'
+import { createRecipesSlice, RecipesSliceType} from './recipeSlice'
+import { FavoritesSliceType, createFavoritesSlice } from './favoritesSlice'
 
-export const useAppStore = create<RecipesSliceType>() (devtools((...a) => ({
-    ...createRecipesSlace(...a)
+export const useAppStore = create<RecipesSliceType & FavoritesSliceType>() (devtools((...a) => ({
+    ...createRecipesSlice(...a),
+    ...createFavoritesSlice(...a)
+
 })))
