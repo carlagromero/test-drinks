@@ -72,7 +72,7 @@ export default function Modal() {
                                     <Dialog.Title as="h3" className="text-gray-900 text-2xl font-extrabold my-5">
                                         Instrucciones
                                     </Dialog.Title>
-                                    <p className='text-lg'>{selectedRecipe.strInstructionsES}</p>
+                                    <p className='text-lg'>{selectedRecipe.strInstructions}</p>
 
                                     <div className='mt-5 flex justify-between gap-4'>
                                         <button
