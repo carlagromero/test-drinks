@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   plugins: [react()],
   // base: 'https://priscila1995.github.io/drinks-and-recipes-app'
-  base: '/drinks-and-recipes-app/'
+  base: ''
 
 })
